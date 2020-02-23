@@ -1,0 +1,6 @@
+.home .carType .nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
