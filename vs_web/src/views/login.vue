@@ -28,17 +28,17 @@
       <div class="container">
         <div class="name">
           <label for="">手机号</label>
-          <input type="text" placeholder="请输入手机号">
+          <input type="text" placeholder="请输入手机号" v-model="objRegister.phoneNum">
         </div>
         <div class="nikeName">
           <label for="">昵称</label>
-          <input type="text" placeholder="请输入昵称">
+          <input type="text" placeholder="请输入昵称" v-model="objRegister.nickName">
         </div>
         <div class="password">
           <div class="top">
             <label for="">密码</label>
           </div>
-          <input type="password" placeholder="请输入密码">
+          <input type="password" placeholder="请输入密码" v-model="objRegister.password">
         </div>
         <div class="button" @click="register()">注册</div>
       </div>
@@ -62,6 +62,11 @@ export default {
       objLogin: {
         phoneNum: '',
         password: ''
+      },
+      objRegister: {
+        phoneNum: '',
+        nickName: '',
+        password: ''
       }
     }
   },
@@ -79,6 +84,13 @@ export default {
       }).catch(err => {
         console.log(err)
         this.tip = '此用户不存在'
+      })
+    },
+    register () {
+      this.$https.post('/web/register', this.objRegister).then(res => {
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
       })
     },
     toRegister () {

@@ -10,7 +10,7 @@ admin.post('/login',(req,res) => {
 	let sql = `select * FROM user where tel = ${phoneNum}`
   db.query(sql, (err, result) => {
 		if(err) throw err;
-		if(result.length > 0 && (result[0].role === 0 || result[0].role === 1)) {
+		if(result[0] && (result[0].role === 0 || result[0].role === 1)) {
 			//用户存在,且为admin或调度管理员
 			if(password === result[0].password) {
 				res.json({
@@ -28,6 +28,21 @@ admin.post('/login',(req,res) => {
 				})
 		}
   })
+})
+
+//后台注册
+admin.post('/register', (req,res) => {
+	let {phoneNum, nickNme, password} = req.body
+	let sql = `select * FROM user where tel = ${phoneNum}`
+  db.query(sql, (err, result) => {
+		if(result[0]) {
+			//手机号已被注册
+
+res.send('存在')
+		} else {
+res.send('可注册')
+		}
+	})
 })
 
 module.exports = admin;
