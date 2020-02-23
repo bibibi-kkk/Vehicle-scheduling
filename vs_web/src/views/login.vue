@@ -82,7 +82,8 @@ export default {
       this.$https.post('/web/login', this.objLogin).then(res => {
         console.log(res.data)
       }).catch(err => {
-        console.log(err)
+        console.log(err.response.data)
+        debugger
         this.tip = '此用户不存在'
       })
     },
