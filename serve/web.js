@@ -33,15 +33,19 @@ admin.post('/login',(req,res) => {
 
 //后台注册
 admin.post('/register', (req,res) => {
-	let {phoneNum, nickNme, password} = req.body
+	let {phoneNum, nickName, password} = req.body
 	let sql = `select * FROM user where tel = ${phoneNum}`
   db.query(sql, (err, result) => {
+		if(err) throw err;
 		if(result[0]) {
 			//手机号已被注册
-
-res.send('存在')
+			res.status(400).json({ msg: '该手机已被注册'})
 		} else {
-res.send('可注册')
+			let sql = `INSERT INTO user (tel, nickname, password, role) VALUES ('${phoneNum}','${nickName}', '${password}', '1');`
+			db.query(sql, (err, result) => {
+				if(err) throw err;
+				if(result) res.json({msg: '注册成功'})
+			})
 		}
 	})
 })

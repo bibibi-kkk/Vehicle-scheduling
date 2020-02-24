@@ -88,7 +88,10 @@ export default {
     },
     register () {
       this.$https.post('/web/register', this.objRegister).then(res => {
-        console.log(res.data)
+        if (res.data.msg === '注册成功') {
+          alert('注册成功')
+          this.isLogin = true
+        }
       }).catch(err => {
         console.log(err)
       })

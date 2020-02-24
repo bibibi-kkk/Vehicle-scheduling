@@ -1,0 +1,18 @@
+.myorder .nav.data-v-a1e18920 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 10%;
+}
+.myorder .nav .tab.data-v-a1e18920 {
+  width: 200rpx;
+  height: 100%;
+  border-radius: 10px;
+  background: pink;
+}
+.myorder .orders.data-v-a1e18920 {
+  height: 90%;
+  width: 100%;
+}
+
