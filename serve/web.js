@@ -19,13 +19,14 @@ admin.post('/login',(req,res) => {
 				user: result[0]
 				})
 			} else {
-					res.status(400).json({
-					msg: '登录失败，密码错误'
+					res.status(400)
+					.json({
+					err: '登录失败，密码错误'
 				})
 			}	
 		} else {
 				res.status(400).json({
-					msg: '登录失败，用户不存在'
+					err: '登录失败，用户不存在'
 				})
 		}
   })
