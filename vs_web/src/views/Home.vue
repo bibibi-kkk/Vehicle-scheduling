@@ -68,7 +68,7 @@ export default {
   methods: {
     show: function () {
       this.$https
-        .get('/user')
+        .get('/web/message')
         .then(res => {
           console.log(res.data)
         })

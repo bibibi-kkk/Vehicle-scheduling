@@ -1,0 +1,50 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/myOrder/myOrder",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
+		},
+		{
+			"path": "pages/myInfo/myInfo",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		}
+	],
+	"tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "iconPath": "static/image/icon_component.png",
+        "selectedIconPath": "static/image/icon_component_HL.png",
+        "text": "首页"
+    }, {
+        "pagePath": "pages/myOrder/myOrder",
+        "iconPath": "static/image/icon_API.png",
+        "selectedIconPath": "static/image/icon_API_HL.png",
+        "text": "订单"
+    }, {
+			"pagePath": "pages/myInfo/myInfo",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "个人信息"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"background-color": "pink"
+	}
+}

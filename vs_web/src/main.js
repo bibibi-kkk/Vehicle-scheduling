@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import ant from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+Vue.use(ant)
 
 Vue.config.productionTip = false
 Vue.prototype.$https = axios

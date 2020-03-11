@@ -8,4 +8,11 @@ const db = mysql.createConnection({
 	database:'vehicle_scheduli'
 })
 
+// const db = mysql.createConnection({
+// 	host:'localhost',
+// 	port:'3306',
+// 	user:'bibibi',
+// 	password:'366322zmt',
+// 	database:'vehicle_scheduling'
+// })
 module.exports = db

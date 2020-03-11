@@ -40,6 +40,7 @@
           </div>
           <input type="password" placeholder="请输入密码" v-model="objRegister.password">
         </div>
+        <div class="tip">{{ttip}}</div>
         <div class="button" @click="register()">注册</div>
       </div>
       <div class="register">已有账号？
@@ -59,6 +60,7 @@ export default {
     return {
       isLogin: true,
       tip: '',
+      ttip: '',
       objLogin: {
         phoneNum: '',
         password: ''
@@ -79,22 +81,39 @@ export default {
         this.tip = '请输入正确的手机号'
         return
       }
+      if (!(/^[\w]{6,12}$/.test(this.objLogin.password))) {
+        this.tip = '密码格式不正确'
+        return
+      }
       this.$https.post('/web/login', this.objLogin).then(res => {
-        console.log(res.data)
+        if (res.data.success) {
+          this.$router.push('/')
+        }
       }).catch(err => {
-        console.log(err.response.data)
-        debugger
-        this.tip = '此用户不存在'
+        this.tip = err.response.data.msg
       })
     },
     register () {
+      this.ttip = ''
+      if (!(/^1[3456789]\d{9}$/.test(this.objRegister.phoneNum))) {
+        this.ttip = '请输入正确的手机号'
+        return
+      }
+      if (!(/^[a-zA-Z0-9_\u4e00-\u9fa5]{3,16}$/.test(this.objRegister.nickName))) {
+        this.ttip = '请设置3-16位的昵称'
+        return
+      }
+      if (!(/^[\w]{6,12}$/.test(this.objRegister.password))) {
+        this.ttip = '密码为6-12位包含字母、数字或下划线'
+        return
+      }
       this.$https.post('/web/register', this.objRegister).then(res => {
         if (res.data.msg === '注册成功') {
           alert('注册成功')
           this.isLogin = true
         }
       }).catch(err => {
-        console.log(err)
+        this.ttip = err.response.data.msg
       })
     },
     toRegister () {
@@ -141,6 +160,7 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     width: 30%;
+    min-width: 280px;
     padding: 70px 25px 25px 25px;
     background: #fff;
     box-shadow: 0 0 25px rgba(0, 0, 0, .1);
