@@ -25,20 +25,26 @@
         </div>
         <div class="nav-item" @click="item_choose(3)">
           <div class="active" v-if="item === 3"></div>
-          <div class="i"><img src="../../public/KHCFDC_审核 2.png" alt=""></div>
-          <div class="text">调度审核</div>
+          <div class="i"><img src="../../public/司机信息管理 (1).png" alt=""></div>
+          <div class="text">调度员管理</div>
         </div>
         <div class="nav-item" @click="item_choose(4)">
           <div class="active" v-if="item === 4"></div>
+          <div class="i"><img src="../../public/KHCFDC_审核 2.png" alt=""></div>
+          <div class="text">申请表管理</div>
+        </div>
+        <div class="nav-item" @click="item_choose(5)">
+          <div class="active" v-if="item === 5"></div>
           <div class="i"><img src="../../public/订单 (1).png" alt=""></div>
-          <div class="text">订单管理</div>
+          <div class="text">安排表管理</div>
           </div>
       </div>
       <div class="container">
         <carManage v-if="item === 1"></carManage>
         <driverManage v-if="item === 2"></driverManage>
-        <orderVerify v-if="item === 3"></orderVerify>
-        <orderManege v-if="item === 4"></orderManege>
+        <dispatchar v-if="item === 3"></dispatchar>
+        <orderVerify v-if="item === 4"></orderVerify>
+        <orderManege v-if="item === 5"></orderManege>
       </div>
     </div>
   </div>
@@ -49,13 +55,15 @@ import carManage from '../components/carManage'
 import driverManage from '../components/driverManage'
 import orderVerify from '../components/orderVerify'
 import orderManege from '../components/orderManege'
+import dispatchar from '../components/dispatcharManage'
 export default {
   name: 'Home',
   components: {
     carManage,
     driverManage,
     orderVerify,
-    orderManege
+    orderManege,
+    dispatchar
   },
   data () {
     return {
