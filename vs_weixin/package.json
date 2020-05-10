@@ -35,9 +35,10 @@
     "@dcloudio/uni-mp-toutiao": "^2.0.0-26120200226001",
     "@dcloudio/uni-mp-weixin": "^2.0.0-26120200226001",
     "@dcloudio/uni-stat": "^2.0.0-26120200226001",
+    "axios": "^0.19.2",
     "flyio": "^0.6.2",
     "regenerator-runtime": "^0.12.1",
-    "vant": "^2.5.4",
+    "vant": "^2.5.5",
     "vue": "^2.6.11",
     "vuex": "^3.0.1"
   },

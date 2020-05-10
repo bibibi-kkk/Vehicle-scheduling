@@ -87,6 +87,8 @@ export default {
       }
       this.$https.post('/web/login', this.objLogin).then(res => {
         if (res.data.success) {
+          sessionStorage.setItem('userId', res.data.user.id)
+          sessionStorage.setItem('user', JSON.stringify(res.data.user))
           this.$router.push('/')
         }
       }).catch(err => {

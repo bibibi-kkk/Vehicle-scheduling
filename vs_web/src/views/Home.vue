@@ -1,91 +1,86 @@
 <template>
   <div class="home">
     <div class="nav">
-      <div class="logo">bibibi调度系统</div>
+      <div class="logo">车辆调度系统</div>
       <div class="user">
-        <div class="navigator">
-          <img src="../../public/p218826117.webp" alt />
-        </div>
-        <div class="name">bibibi</div>
-        <img src="../../public/向下.png" alt="" class="out">
+          <div class="navigator">
+          <img :src="user.avatarurl" alt />
+            {{user.nickname}}
+            <a-popover>
+              <template slot="content">
+                <p>退出登录</p>
+              </template>
+              <a-icon @click="logout" class="hover" type="arrow-right" />
+            </a-popover>
+          </div>
       </div>
     </div>
     <div class="content">
       <div class="sidenav">
         <div class="title">功能选择</div>
-        <div class="nav-item" @click="item_choose(1)">
-          <div class="active" v-if="item === 1"></div>
+        <div class="nav-item" @click="item_choose('carManagement')">
+          <div v-if="item === 'carManagement'" class="active"></div>
           <div class="i"><img src="../../public/车辆 (1).png" alt=""></div>
           <div class="text">车辆管理</div>
         </div>
-        <div class="nav-item" @click="item_choose(2)">
-          <div class="active" v-if="item === 2"></div>
+        <div class="nav-item" @click="item_choose('driverManage')">
+          <div class="active" v-if="item === 'driverManage'"></div>
           <div class="i"><img src="../../public/司机信息管理 (1).png" alt=""></div>
           <div class="text">司机管理</div>
         </div>
-        <div class="nav-item" @click="item_choose(3)">
-          <div class="active" v-if="item === 3"></div>
+        <div class="nav-item" @click="item_choose('dispatcharManage')">
+          <div class="active" v-if="item === 'dispatcharManage'"></div>
           <div class="i"><img src="../../public/司机信息管理 (1).png" alt=""></div>
           <div class="text">调度员管理</div>
         </div>
-        <div class="nav-item" @click="item_choose(4)">
-          <div class="active" v-if="item === 4"></div>
+        <div class="nav-item" @click="item_choose('orderVerify')">
+          <div class="active" v-if="item === 'orderVerify'"></div>
           <div class="i"><img src="../../public/KHCFDC_审核 2.png" alt=""></div>
           <div class="text">申请表管理</div>
         </div>
-        <div class="nav-item" @click="item_choose(5)">
-          <div class="active" v-if="item === 5"></div>
+        <div class="nav-item" @click="item_choose('orderManage')">
+          <div class="active" v-if="item === 'orderManage'"></div>
           <div class="i"><img src="../../public/订单 (1).png" alt=""></div>
           <div class="text">安排表管理</div>
-          </div>
+        </div>
       </div>
       <div class="container">
-        <carManage v-if="item === 1"></carManage>
-        <driverManage v-if="item === 2"></driverManage>
-        <dispatchar v-if="item === 3"></dispatchar>
-        <orderVerify v-if="item === 4"></orderVerify>
-        <orderManege v-if="item === 5"></orderManege>
+        <router-view></router-view>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import carManage from '../components/carManage'
-import driverManage from '../components/driverManage'
-import orderVerify from '../components/orderVerify'
-import orderManege from '../components/orderManege'
-import dispatchar from '../components/dispatcharManage'
+const data = [{
+  name: 'bibi'
+}]
 export default {
   name: 'Home',
   components: {
-    carManage,
-    driverManage,
-    orderVerify,
-    orderManege,
-    dispatchar
   },
   data () {
     return {
-      item: null
+      item: 'carManagement',
+      data,
+      user: {}
     }
   },
   mounted () {
-    this.show()
+    this.user = JSON.parse(sessionStorage.getItem('user'))
+    if (sessionStorage.getItem('key')) {
+      this.item = sessionStorage.getItem('key')
+    }
   },
   methods: {
-    show: function () {
-      this.$https
-        .get('/web/message')
-        .then(res => {
-          console.log(res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
+    logout () {
+      sessionStorage.clear()
+      this.$router.push('/login')
     },
     item_choose (val) {
       this.item = val
+      sessionStorage.setItem('key', val)
+      this.$router.push(`/${val}`)
     }
   }
 }
@@ -110,23 +105,21 @@ export default {
       font-weight: 400;
     }
     .user {
-      display: flex;
+      // display: flex;
       align-items: center;
       margin-right: 80px;
       .navigator {
-        margin-right: 5px;
+        margin-right: 15px;
+        font-size: 20px;
+        color: #fff;
         img {
-          width: 30px;
-          height: 30px;
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
         }
       }
-      .name {
-        margin-right: 5px;
-      }
-      .out {
-        width: 15px;
-        height: 15px;
+      .hover {
+        cursor: pointer;
       }
     }
   }
@@ -135,10 +128,10 @@ export default {
     margin-bottom: 3%;
     display: flex;
       .sidenav {
-        flex: 15%;
+        width: 15%;
         height: 100%;
         background: linear-gradient(0deg, #f871a5 0%, #1b8294 100%);
-        padding: 0 2%;
+        padding: 0 0 0 1.5%;
         box-sizing: border-box;
         margin: 0 2%;
         border-radius: 5px;
@@ -177,10 +170,12 @@ export default {
         }
       }
     .container {
-      flex: 80%;
-      background: #27293d;
+      width: 80%;
+      // background: #27293d;
+      background: #fff;
       // padding: 5%;
       margin-right:5%;
+      padding: 10px;
     }
   }
 }

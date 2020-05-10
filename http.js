@@ -16,6 +16,10 @@ app.use((req, res, next) => {
 })
 
 //web端接口
+app.use('/user', require('./serve/user'))
+app.use('/car', require('./serve/car'))
+app.use('/order', require('./serve/order'))
+app.use('/driver', require('./serve/driver'))
 app.use('/web', require('./serve/web'))
 
 app.listen(8080)

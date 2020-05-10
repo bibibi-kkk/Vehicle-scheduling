@@ -17,6 +17,42 @@
 			"style": {
 				"navigationBarTitleText": "个人信息"
 			}
+		},
+		{
+			"path": "pages/myOrder/order",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/index/carPage",
+			"style": {
+				"navigationBarTitleText": "车辆详情"
+			}
+		},
+		{
+			"path": "pages/index/orderForm",
+			"style": {
+				"navigationBarTitleText": "确认订单"
+			}
+		},
+		{
+			"path": "pages/myInfo/addressSet",
+			"style": {
+				"navigationBarTitleText": "地址设置"
+			}
+		},
+		{
+			"path": "pages/myInfo/setInfo",
+			"style": {
+				"navigationBarTitleText": "修改信息"
+			}
+		},
+		{
+			"path": "pages/driverOrder",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
 		}
 	],
 	"tabBar": {
@@ -26,18 +62,18 @@
     "backgroundColor": "#ffffff",
     "list": [{
         "pagePath": "pages/index/index",
-        "iconPath": "static/image/icon_component.png",
-        "selectedIconPath": "static/image/icon_component_HL.png",
+        "iconPath": "static/h1.png",
+        "selectedIconPath": "static/h0.png",
         "text": "首页"
     }, {
         "pagePath": "pages/myOrder/myOrder",
-        "iconPath": "static/image/icon_API.png",
-        "selectedIconPath": "static/image/icon_API_HL.png",
+        "iconPath": "static/o1.png",
+        "selectedIconPath": "static/o0.png",
         "text": "订单"
     }, {
 			"pagePath": "pages/myInfo/myInfo",
-			"iconPath": "static/image/icon_API.png",
-			"selectedIconPath": "static/image/icon_API_HL.png",
+			"iconPath": "static/m0.png",
+			"selectedIconPath": "static/m1.png",
 			"text": "个人信息"
 		}]
 	},

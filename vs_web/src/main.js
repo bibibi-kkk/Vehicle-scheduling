@@ -5,6 +5,7 @@ import store from './store'
 import axios from 'axios'
 import ant from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
+// import 'babel-polyfill'
 Vue.use(ant)
 
 Vue.config.productionTip = false
